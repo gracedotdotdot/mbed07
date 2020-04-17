@@ -5,7 +5,7 @@ import sys
 import time
 
 
-serdev = '/dev/ttyACM1'
+serdev = '/dev/ttyACM0'
 
 s = serial.Serial(serdev)
 
