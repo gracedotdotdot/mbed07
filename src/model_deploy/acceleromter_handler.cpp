@@ -116,9 +116,6 @@ bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
 
                        int length, bool reset_buffer) {
 
-  static tflite::MicroErrorReporter micro_error_reporter;
-
-  tflite::ErrorReporter* error_reporter = &micro_error_reporter;
 
   // Clear the buffer if required, e.g. after a successful prediction
 
