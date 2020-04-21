@@ -189,6 +189,7 @@ bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
   if (begin_index >= 600) {
     //pc.printf("out of index, clear buffer\r\n");
     error_reporter->Report("out of index, clear buffer\n");
+    wait(0.5);
     begin_index = 0;
 
   }
@@ -207,6 +208,7 @@ bool ReadAccelerometer(tflite::ErrorReporter* error_reporter, float* input,
   if (pending_initial_data) {
     //pc.printf("still pending data\r\n");
     error_reporter->Report("still pending data\n");
+    wait(0.5);
     return false;
 
   }

@@ -18,7 +18,7 @@
 #include "tensorflow/lite/schema/schema_generated.h"
 
 #include "tensorflow/lite/version.h"
-//Serial pc( USBTX, USBRX );
+
 
 
 // Return the result of the last prediction
@@ -45,6 +45,8 @@ int PredictGesture(float* output) {
     if (output[i] > 0.8) {
       this_predict = i;
       error_reporter->Report("this predict=%d",i);
+      //wait(2);
+
     }
 
 
@@ -57,30 +59,24 @@ int PredictGesture(float* output) {
     //pc.printf("no gesture above 0.8");
     error_reporter->Report("no gesture above 0.8");
     continuous_count = 0;
-
     last_predict = label_num;
-
     return label_num;
-
   }
-
-
   if (last_predict == this_predict) {
     //pc.printf("last=this");
     error_reporter->Report("last=this");
+    //wait(1);
     continuous_count += 1;
   } else {
     continuous_count = 0;
   }
-
   last_predict = this_predict;
-
-
   // If we haven't yet had enough consecutive matches for this gesture,
   // report a negative result
 
   if (continuous_count < config.consecutiveInferenceThresholds[this_predict]) {
     error_reporter->Report("not enough data");
+    //wait(1);
     //pc.printf("not enough data");
     return label_num;
 
